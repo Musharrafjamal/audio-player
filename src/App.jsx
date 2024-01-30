@@ -148,8 +148,12 @@ function App() {
                 ))}
               </select>
               <h3 className="now-playing">
-                Now Playing: {playlist[currentSongIndex].name}
+                Now Playing:{" "}
+                {playlist.length > 0
+                  ? playlist[currentSongIndex]?.name
+                  : "No song selected"}
               </h3>
+
               <audio
                 ref={audioRef}
                 controls
