@@ -158,7 +158,11 @@ function App() {
                 ref={audioRef}
                 controls
                 onTimeUpdate={handleTimeUpdate}
-                src={playlist[currentSongIndex].url}
+                src={
+                  playlist.length > 0 && currentSongIndex < playlist.length
+                    ? playlist[currentSongIndex].url
+                    : ""
+                }
                 className="audio-player"
               />
             </div>
