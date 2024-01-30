@@ -97,13 +97,15 @@ function App() {
   }, [currentTime]);
   useEffect(() => {
     if (audioRef.current) {
-      audioRef.current.currentTime = parseInt(
-        localStorage.getItem("currentTime")
-      );
-      audioRef.current.play();
+      const storedTime = parseFloat(localStorage.getItem("currentTime"));
+  
+      if (!isNaN(storedTime) && isFinite(storedTime)) {
+        audioRef.current.currentTime = storedTime;
+        audioRef.current.play();
+      }
     }
-    setCurrentSongIndex(parseInt(localStorage.getItem("currentSongIndex")));
   }, [playlist]);
+  
   useEffect(() => {
     if (currentSongIndex !== 0) {
       localStorage.setItem("currentSongIndex", currentSongIndex);
